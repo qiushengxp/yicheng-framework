@@ -20,7 +20,7 @@ use Yicheng\framework\constant\BusinessType;
  * })
  *
  */
-final class LogAnnotations extends Annotation
+final class Log extends Annotation
 {
     /**
      * 标题

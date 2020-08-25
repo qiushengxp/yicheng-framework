@@ -10,9 +10,7 @@ namespace Yicheng\Framework\service;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\FileCacheReader;
-use think\facade\Db;
-use Yicheng\Framework\annotations\LogAnnotations;
-use Yicheng\Framework\exception\ServiceException;
+use Yicheng\Framework\annotations\Log;
 
 class LogService
 {
@@ -105,8 +103,11 @@ class LogService
      */
     public function getMethod(string $method)
     {
+        if (empty($this->reflectionClass)) {
+            return null;
+        }
         $m          = $this->reflectionClass->getMethod($method);
-        $annotation = $this->reader->getMethodAnnotation($m, LogAnnotations::class);
+        $annotation = $this->reader->getMethodAnnotation($m, Log::class);
         // 若存在注解，则返回注解信息
         if (!empty($annotation)) {
             $this->setData($annotation);
@@ -122,8 +123,11 @@ class LogService
      */
     public function getProperty(string $property)
     {
+        if (empty($this->reflectionClass)) {
+            return null;
+        }
         $m          = $this->reflectionClass->getProperty($property);
-        $annotation = $this->reader->getPropertyAnnotation($m, LogAnnotations::class);
+        $annotation = $this->reader->getPropertyAnnotation($m, Log::class);
         // 若存在注解，则返回注解信息
         if (!empty($annotation)) {
             $this->setData($annotation);
@@ -156,28 +160,11 @@ class LogService
     }
 
     /**
-     * 保存数据
-     * @param array $data
-     * @return int|string
-     * @throws ServiceException
+     * 获取数据
+     * @return array
      */
-    public function save($data = [])
+    public function getData()
     {
-        if (!empty($data)) {
-            $this->data = $data;
-        }
-        if (empty($this->table)) {
-            throw new ServiceException('未设置数据表名');
-        }
-        if (empty($this->data)) {
-            throw new ServiceException('未指定需要保存的数据');
-        }
-        $re = Db::name($this->table)->insert($this->data);
-        if ($re) {
-            $this->data = [];   // 清空数据
-            return $re;
-        } else {
-            throw new ServiceException('保存失败');
-        }
+        return $this->data;
     }
 }
