@@ -1,7 +1,7 @@
 {
   "name": "qiushengxp/yicheng-framework",
   "type": "library",
-  "description": "yicheng-framework",
+  "description": "框架代码",
   "keywords": [
     "yicheng-framework"
   ],
@@ -31,5 +31,6 @@
       "type": "composer",
       "url": "https://packagist.phpcomposer.com"
     }
-  }
+  },
+  "minimum-stability":"dev"
 }
