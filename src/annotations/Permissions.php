@@ -30,8 +30,8 @@ final class Permissions extends Annotation
     public $name;
 
     /**
-     * 角色名
-     * @var array
+     * 角色名，多个以英文","分开
+     * @var string
      */
     public $role;
 }
