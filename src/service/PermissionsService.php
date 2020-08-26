@@ -57,7 +57,7 @@ class PermissionsService
         // 注解缓存读取器
         $this->reader = new FileCacheReader(new AnnotationReader(), $this->annotationCacheDir, $this->annotationDebug);
         // 设置读取类
-        if (empty($class)) {
+        if (!empty($class)) {
             $this->setClass($class);
         }
     }
