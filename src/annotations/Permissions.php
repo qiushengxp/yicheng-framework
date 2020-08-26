@@ -16,7 +16,8 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  * @Attributes({
- *     @Attribute("title", type="string"),
+ *     @Attribute("name", type="string"),
+ *     @Attribute("role", type="array"),
  * })
  *
  */
@@ -30,7 +31,7 @@ final class Permissions extends Annotation
 
     /**
      * 角色名
-     * @var string
+     * @var array
      */
     public $role;
 }

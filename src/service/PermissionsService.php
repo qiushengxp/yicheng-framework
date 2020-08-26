@@ -77,29 +77,31 @@ class PermissionsService
 
     /**
      * 设置权限
-     * @param $data
+     * @param array $data
      */
-    public function setPermissions($data)
+    public function setPermissions(array $data)
     {
         $this->permissionData = $data;
+        return $this;
     }
 
     /**
      * 设置角色名
-     * @param $data
+     * @param array $data
      */
-    public function setRole($data)
+    public function setRole(array $data)
     {
         $this->roles = $data;
+        return $this;
     }
 
     /**
      * 验证权限是否通过
-     * @param $method
+     * @param string $method
      * @return bool
      * @throws \ReflectionException
      */
-    public function checkPermission($method)
+    public function checkPermission(string $method)
     {
         if (empty($this->reflectionClass)) {
             return true;
@@ -120,9 +122,15 @@ class PermissionsService
         // 注解角色权限
         $role = true;
         if (!empty($annotation->role)) {
-            if (in_array($annotation->role, $this->roles)) {
+            $roles = (array)$annotation->role;
+            // 角色注解支持数组
+            foreach ($roles as $vo) {
                 $role = false;
+                if (in_array($vo, $this->roles)) {
+                    $role = false;
+                }
             }
+
         }
 
         return $name && $role;
