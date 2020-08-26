@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "yicheng-framework\\": "src/"
+      "Yicheng\\Framework\\": "src/"
     }
   },
   "repositories": {
