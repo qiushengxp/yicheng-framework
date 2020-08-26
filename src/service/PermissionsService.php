@@ -122,12 +122,11 @@ class PermissionsService
         // 注解角色权限
         $role = true;
         if (!empty($annotation->role)) {
-            $roles = explode(',', $annotation->role);
             // 角色注解支持数组
-            foreach ($roles as $vo) {
+            foreach ($annotation->role as $vo) {
                 $role = false;
                 if (in_array($vo, $this->roles)) {
-                    $role = false;
+                    $role = true;
                 }
             }
 
