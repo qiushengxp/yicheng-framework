@@ -47,7 +47,7 @@ class LogService
      * LogService constructor.
      * @param string $class
      */
-    public function __construct($class = '', $table = '')
+    public function __construct($class = '')
     {
         $this->annotationCacheDir = runtime_path() . 'annotation' . DIRECTORY_SEPARATOR . 'log';
 
@@ -102,7 +102,6 @@ class LogService
     {
         $this->data = array_merge($this->data, [
             'title'        => $annotation->title,
-            'action'       => $annotation->action,
             'businessType' => $annotation->businessType
         ]);
     }
