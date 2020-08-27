@@ -35,5 +35,12 @@ final class Log extends Annotation
      */
     public $businessType;
 
+    /**
+     * 提交方式
+     * 根据此类型过滤提交
+     * @Enum({ajax,post,get,put,all})
+     * @var string
+     */
+    public $method = "all";
 
 }

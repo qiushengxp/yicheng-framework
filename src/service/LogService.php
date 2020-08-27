@@ -68,7 +68,7 @@ class LogService
      */
     public function setClass(string $class)
     {
-        $controller         = str_replace('.', '\\', $class);
+        $controller = str_replace('.', '\\', $class);
         // 获取类和方法的注释信息
         $this->reflectionClass = new \ReflectionClass($controller);
         return $this;
@@ -102,7 +102,8 @@ class LogService
     {
         $this->data = array_merge($this->data, [
             'title'        => $annotation->title,
-            'businessType' => $annotation->businessType
+            'businessType' => $annotation->businessType,
+            'method'       => $annotation->method
         ]);
     }
 
