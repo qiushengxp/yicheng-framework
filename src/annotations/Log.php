@@ -8,7 +8,6 @@ namespace Yicheng\Framework\annotations;
 
 
 use Doctrine\Common\Annotations\Annotation;
-use Yicheng\framework\constant\BusinessType;
 
 /**
  * Class LogAnnotations
@@ -17,6 +16,7 @@ use Yicheng\framework\constant\BusinessType;
  * @Target("METHOD")
  * @Attributes({
  *     @Attribute("title", type="string"),
+ *     @Attribute("method", type="enum"),
  * })
  *
  */
@@ -42,6 +42,6 @@ final class Log extends Annotation
      * @Enum({GET,POST,PUT,PATCH,DELETE,ALL})
      * @var string
      */
-    public $method = "all";
+    public $method = "ALL";
 
 }
