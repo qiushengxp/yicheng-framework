@@ -30,17 +30,10 @@ final class Log extends Annotation
     public $title;
 
     /**
-     * 操作
-     * @Required()
-     * @var string
-     */
-    public $action;
-
-    /**
      * 业务类型
      * @var string
      */
-    public $businessType = BusinessType::CREATE;
+    public $businessType;
 
 
 }

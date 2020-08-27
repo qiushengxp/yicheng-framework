@@ -99,7 +99,7 @@ class LogService
     /**
      * 获取方法的注解信息
      * @param string $method
-     * @return $this
+     * @return array|mixed|object|string|null
      * @throws \ReflectionException
      */
     public function getMethod(string $method)
@@ -113,27 +113,7 @@ class LogService
         if (!empty($annotation)) {
             $this->setData($annotation);
         }
-        return $this;
-    }
-
-    /**
-     * 返回属性
-     * @param string $property
-     * @return $this
-     * @throws \ReflectionException
-     */
-    public function getProperty(string $property)
-    {
-        if (empty($this->reflectionClass)) {
-            return null;
-        }
-        $m          = $this->reflectionClass->getProperty($property);
-        $annotation = $this->reader->getPropertyAnnotation($m, Log::class);
-        // 若存在注解，则返回注解信息
-        if (!empty($annotation)) {
-            $this->setData($annotation);
-        }
-        return $this;
+        return $annotation;
     }
 
     /**
@@ -158,14 +138,5 @@ class LogService
     {
         $this->data = array_merge($this->data, $data);
         return $this;
-    }
-
-    /**
-     * 获取数据
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->data;
     }
 }
