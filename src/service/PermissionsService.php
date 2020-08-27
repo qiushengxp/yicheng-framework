@@ -70,8 +70,9 @@ class PermissionsService
      */
     public function setClass(string $class)
     {
+        $controller         = str_replace('.', '\\', $class);
         // 获取类和方法的注释信息
-        $this->reflectionClass = new \ReflectionClass($class);
+        $this->reflectionClass = new \ReflectionClass($controller);
         return $this;
     }
 
