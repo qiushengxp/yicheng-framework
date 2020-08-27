@@ -43,13 +43,6 @@ class LogService
     private $data = [];
 
     /**
-     * 数据表名
-     * 根据模型规则，忽略表前缀
-     * @var string
-     */
-    private $table = '';
-
-    /**
      *
      * LogService constructor.
      * @param string $class
@@ -62,12 +55,8 @@ class LogService
         // 注解缓存读取器
         $this->reader = new FileCacheReader(new AnnotationReader(), $this->annotationCacheDir, $this->annotationDebug);
         // 设置读取类
-        if (empty($class)) {
+        if (!empty($class)) {
             $this->setClass($class);
-        }
-        // 设置表名
-        if (empty($table)) {
-            $this->setTable($table);
         }
     }
 
@@ -82,17 +71,6 @@ class LogService
         $controller         = str_replace('.', '\\', $class);
         // 获取类和方法的注释信息
         $this->reflectionClass = new \ReflectionClass($controller);
-        return $this;
-    }
-
-    /**
-     * 设置表名
-     * @param string $table
-     * @return $this
-     */
-    public function setTable(string $table)
-    {
-        $this->table = $table;
         return $this;
     }
 
